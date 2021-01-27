@@ -1,9 +1,10 @@
 import React from 'react'
-import { useState } from "react"
+import { useContext } from "react"
 
 import styled from 'styled-components'
 
 import useMousePosition from "../hooks/mouseposition"
+import { CursorContext } from "./CursorContext"
 
 const InnerCircle = styled.div`
     width: 10px;
@@ -17,13 +18,13 @@ const InnerCircle = styled.div`
     z-index: 9999;
 `
 const OuterCircle = styled.div`
-    width: 30px;
-    height: 30px;
+    width: ${({value}) => (value ? "54px" : "30px")};
+    height: ${({value}) => (value ? "54px" : "30px")};
     position: absolute;
-    transform: translate(-16px, -17px);
-    border-radius: 100%;
+    transform: ${({value}) => (value ? "translate(-28px, -29px)" : "translate(-16px, -17px)")};
+    border-radius: 50%;
     border: solid 2px white;
-    transition: 100ms;
+    transition: top 120ms, left 120ms, transform 500ms, width 500ms, height 500ms;
     mix-blend-mode: difference;
     pointer-events: none;
     z-index: 9999;
@@ -34,6 +35,10 @@ function Cursor () {
   //Tracking the mouse position.
   const { x, y } = useMousePosition(); 
 
+  //Context provider
+  const {value, setValue} = useContext(CursorContext);
+  console.log(`cursor ${value}`) 
+
  return (
     <div>
         <InnerCircle
@@ -42,7 +47,7 @@ function Cursor () {
                 left:`${x}px`,
             }}>
         </InnerCircle>  
-        <OuterCircle 
+        <OuterCircle value={value}
             style = {{
                 top:`${y}px`,
                 left: `${x}px`,

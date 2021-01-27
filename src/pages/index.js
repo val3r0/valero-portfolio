@@ -1,6 +1,7 @@
 //import
 import * as React from "react"
-import {useEffect} from "react"
+
+import { useState } from "react"
 
 import styled, { createGlobalStyle } from 'styled-components'
 
@@ -8,6 +9,7 @@ import Navbar from "../components/navbar";
 import Body from "../components/body";
 import Footer from "../components/footer";
 import Cursor from "../components/cursor";
+import { CursorContext } from "../components/CursorContext";
 
 //Global styles
 const GlobalStyle = createGlobalStyle`
@@ -39,15 +41,20 @@ const MainWrapper = styled.div`
 
 function Index() { 
 
+  const [value, setValue] = useState();
+  console.log(`Index ${value}`)
+
   return (
     <div>
       <GlobalStyle/>
+      <CursorContext.Provider value={{value, setValue}}>
       <MainWrapper>
         <Navbar></Navbar>
         <Body></Body>
-        <Footer></Footer>  
+        <Footer></Footer>
       </MainWrapper>
       <Cursor/>
+      </CursorContext.Provider>
     </div>
   )
 }
