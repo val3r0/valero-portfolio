@@ -3,6 +3,7 @@ import * as React from "react"
 
 import styled from 'styled-components'
 
+
 //styles
 const Wrapper = styled.div`
     width: auto;
@@ -35,7 +36,7 @@ function Navbar() {
             <Wrapper>
                 <Logo>valero.</Logo>
                 <Menu>
-                    <p>Work</p>
+                    <p>Work</p> 
                     <p>Blog</p>
                 </Menu>
             </Wrapper>

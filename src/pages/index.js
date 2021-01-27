@@ -1,5 +1,6 @@
 //import
 import * as React from "react"
+import {useEffect} from "react"
 
 import styled, { createGlobalStyle } from 'styled-components'
 
@@ -36,7 +37,7 @@ const MainWrapper = styled.div`
   z-index: 1;
 `
 
-function Index() {
+function Index() { 
 
   return (
     <div>
